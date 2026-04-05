@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حسين عبد الستار مجيد | مهندس ذكاء اصطناعي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #11111a;
+      --bg3: #1a1a2e;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --accent3: #ff6b6b;
+      --text: #f0f0f8;
+      --text2: #a0a0c0;
+      --text3: #606080;
+      --border: rgba(108,99,255,0.2);
+      --card: rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 20%, rgba(108,99,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,212,170,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent2); }
+
+    .lang-btn {
+      background: var(--border);
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: 'Cairo', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .lang-btn:hover { background: var(--accent2); color: var(--bg); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content { max-width: 800px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.4);
+      color: var(--accent);
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text2);
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text3);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #8b7ff5);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(108,99,255,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text3);
+      font-size: 0.8rem;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--text3), transparent);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      color: var(--accent2);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .avatar-box {
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      font-weight: 900;
+      color: white;
+      position: relative;
+      box-shadow: 0 0 60px rgba(108,99,255,0.3);
+    }
+
+    .avatar::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      animation: rotate 8s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .about-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .about-info p {
+      color: var(--text2);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .info-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+    }
+
+    .info-item .label {
+      font-size: 0.75rem;
+      color: var(--text3);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-item .value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .skill-card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.25);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-num {
+      font-size: 0.75rem;
+      color: var(--accent2);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card p {
+      color: var(--text2);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-badge {
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.25);
+      color: var(--accent2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* CONTACT */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--text2);
+      margin-bottom: 2rem;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+      transform: translateX(-4px);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(108,99,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text3);
+      font-size: 0.9rem;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .avatar { width: 160px; height: 160px; font-size: 3.5rem; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Divider */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* HONOR MEMBERS */
+    .honor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .honor-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .honor-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .honor-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(108,99,255,0.15);
+    }
+
+    .honor-rank {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+    }
+
+    .honor-avatar-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 30px rgba(108,99,255,0.35);
+      flex-shrink: 0;
+    }
+
+    .honor-avatar-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .honor-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: white;
+      box-shadow: 0 0 30px rgba(108,99,255,0.35);
+    }
+
+    .honor-info { width: 100%; }
+
+    .honor-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .honor-role {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+
+    .honor-badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.12);
+      border: 1px solid rgba(0,212,170,0.35);
+      color: var(--accent2);
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* PHOTO SECTION */
+    .photo-frame-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(108,99,255,0.15);
+    }
+
+    .section-photo {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .photo-frame:hover .section-photo {
+      transform: scale(1.03);
+    }
+
+    .photo-caption {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 1.2rem 1.8rem;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.82) 0%, transparent 100%);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: #fff;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 768px) {
+      .section-photo {
+        max-height: 300px;
+      }
+      .photo-caption {
+        font-size: 0.8rem;
+        padding: 0.9rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">حسين عبد الستار</div>
+  <ul class="nav-links">
+    <li><a href="#about" data-ar="عن المهندس" data-en="About">عن المهندس</a></li>
+    <li><a href="#honor" data-ar="أعضاء الشرف" data-en="Honor Members">أعضاء الشرف</a></li>
+    <li><a href="#contact" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+  </ul>
+  <button class="lang-btn" onclick="toggleLang()">EN</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content fade-in">
+    <div class="hero-badge" data-ar="🤖 مهندس تقنيات الذكاء الاصطناعي" data-en="🤖 AI Technologies Engineer">🤖 مهندس تقنيات الذكاء الاصطناعي</div>
+    <h1>
+      <span data-ar="حسين عبد الستار" data-en="Hussein Abdul Sattar">حسين عبد الستار</span><br>
+      <span class="highlight" data-ar="مجيد" data-en="Majeed">مجيد</span>
+    </h1>
+    <p class="hero-sub" data-ar="بناء المستقبل بتقنيات الذكاء الاصطناعي" data-en="Building the future with AI technologies">بناء المستقبل بتقنيات الذكاء الاصطناعي</p>
+    <p class="hero-desc" data-ar="مهندس متخصص في هندسة تقنيات الذكاء الاصطناعي، أعمل على بناء نماذج ذكاء اصطناعي متقدمة وحلول تقنية مبتكرة." data-en="An AI engineer specializing in cutting-edge artificial intelligence technologies, building advanced AI models and innovative technical solutions.">مهندس متخصص في هندسة تقنيات الذكاء الاصطناعي، أعمل على بناء نماذج ذكاء اصطناعي متقدمة وحلول تقنية مبتكرة.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary" data-ar="استعرض أعمالي" data-en="View My Work">استعرض أعمالي</a>
+      <a href="#contact" class="btn-secondary" data-ar="تواصل معي" data-en="Contact Me">تواصل معي</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid fade-in">
+    <div class="avatar-box">
+      <div class="avatar" style="background:none;box-shadow:0 0 60px rgba(108,99,255,0.3);">
+        <img src="hussein.jpg" alt="حسين عبد الستار مجيد" style="width:240px;height:240px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--accent);" />
+      </div>
+      <div style="display:flex;gap:1rem;margin-top:1.5rem;justify-content:center;">
+        <a href="https://web.facebook.com/HuSSoNi.Tia" target="_blank" style="display:flex;align-items:center;gap:0.5rem;background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.3);color:var(--accent);padding:0.5rem 1rem;border-radius:20px;text-decoration:none;font-size:0.85rem;font-family:'Cairo',sans-serif;transition:all 0.3s;" onmouseover="this.style.background='rgba(108,99,255,0.25)'" onmouseout="this.style.background='rgba(108,99,255,0.12)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a href="https://www.instagram.com/h_sson6/" target="_blank" style="display:flex;align-items:center;gap:0.5rem;background:rgba(0,212,170,0.12);border:1px solid rgba(0,212,170,0.3);color:var(--accent2);padding:0.5rem 1rem;border-radius:20px;text-decoration:none;font-size:0.85rem;font-family:'Cairo',sans-serif;transition:all 0.3s;" onmouseover="this.style.background='rgba(0,212,170,0.25)'" onmouseout="this.style.background='rgba(0,212,170,0.12)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+    <div class="about-info">
+      <div class="section-tag" data-ar="من أنا" data-en="Who I Am">من أنا</div>
+      <h3 data-ar="حسين عبد الستار مجيد" data-en="Hussein Abdul Sattar Majeed">حسين عبد الستار مجيد</h3>
+      <p data-ar="مهندس شغوف بعالم الذكاء الاصطناعي وتقنياته الحديثة. أجمع بين الأساس الأكاديمي القوي في هندسة الذكاء الاصطناعي والخبرة العملية في تطوير وتطبيق نماذج التعلم الآلي والتعلم العميق لحل المشكلات الواقعية." data-en="A passionate AI engineer with deep expertise in modern AI technologies. I combine a strong academic foundation in AI engineering with hands-on experience in developing and applying machine learning and deep learning models to solve real-world problems.">مهندس شغوف بعالم الذكاء الاصطناعي وتقنياته الحديثة. أجمع بين الأساس الأكاديمي القوي في هندسة الذكاء الاصطناعي والخبرة العملية في تطوير وتطبيق نماذج التعلم الآلي والتعلم العميق لحل المشكلات الواقعية.</p>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label" data-ar="التخصص" data-en="Specialization">التخصص</div>
+          <div class="value" data-ar="هندسة الذكاء الاصطناعي" data-en="AI Engineering">هندسة الذكاء الاصطناعي</div>
+        </div>
+        <div class="info-item">
+          <div class="label" data-ar="الجامعة" data-en="University">الجامعة</div>
+          <div class="value" data-ar="جامعة النسور" data-en="Al-Nisour University">جامعة النسور</div>
+        </div>
+        <div class="info-item">
+          <div class="label" data-ar="رقم التواصل" data-en="Phone">رقم التواصل</div>
+          <div class="value">07758857800</div>
+        </div>
+        <div class="info-item">
+          <div class="label" data-ar="الحالة" data-en="Status">الحالة</div>
+          <div class="value" style="color: var(--accent2);" data-ar="متاح للعمل ✓" data-en="Available ✓">متاح للعمل ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PHOTO SECTION -->
+<section id="photo-section" style="padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;">
+  <div class="fade-in" style="text-align: center; margin-bottom: 2rem;">
+    <div class="section-tag" data-ar="زملاء الدراسة" data-en="Classmates">زملاء الدراسة</div>
+    <h2 class="section-title" data-ar="طلاب هندسة تقنيات الذكاء الاصطناعي" data-en="AI Engineering Students">طلاب هندسة تقنيات الذكاء الاصطناعي</h2>
+  </div>
+  <div class="fade-in photo-frame-wrapper">
+    <div class="photo-frame">
+      <img
+        src="students.jpg"
+        alt="طلاب هندسة تقنيات الذكاء الاصطناعي"
+        class="section-photo"
+      />
+      <div class="photo-caption">
+        <span>🎓</span>
+        <span data-ar="طلاب قسم هندسة تقنيات الذكاء الاصطناعي — جامعة النسور" data-en="AI Engineering Department Students — Al-Nisour University">طلاب قسم هندسة تقنيات الذكاء الاصطناعي — جامعة النسور</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HONOR MEMBERS -->
+<section id="honor" style="padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;">
+  <div class="fade-in" style="text-align:center; margin-bottom: 3rem;">
+    <div class="section-tag" data-ar="شرف وتميز" data-en="Honor & Excellence">شرف وتميز</div>
+    <h2 class="section-title" data-ar="أعضاء الشرف" data-en="Honor Members">أعضاء الشرف</h2>
+    <p class="section-desc" style="margin: 0 auto;" data-ar="نخبة من الأعضاء المميزين الذين أسهموا في رفع اسم القسم" data-en="Distinguished members who contributed to the excellence of the department">نخبة من الأعضاء المميزين الذين أسهموا في رفع اسم القسم</p>
+  </div>
+  <div class="honor-grid fade-in">
+
+  <!-- العضو 1 -->
+  <div class="honor-card">
+    <div class="honor-rank">01</div>
+    <div class="honor-avatar-photo">
+      <img src="abd.jpg" alt="المهندس عبد الله فارس" />
+    </div>
+    <div class="honor-info">
+      <h3 class="honor-name">المهندس عبد الله فارس</h3>
+      <p class="honor-role">ممثل قسم هندسة تقنيات الذكاء الاصطناعي</p>
+      <div class="honor-badge">⭐ عضو شرف</div>
+    </div>
+  </div>
+
+  <!-- العضو 2 -->
+  <div class="honor-card">
+    <div class="honor-rank">02</div>
+    <div class="honor-avatar-photo">
+      <img src="ali.jpg" alt="المهندس علي رياض" />
+    </div>
+    <div class="honor-info">
+      <h3 class="honor-name">المهندس علي رياض</h3>
+      <p class="honor-role">بالسنة مرة تشوف بالجامعة</p>
+      <div class="honor-badge">⭐ عضو شرف</div>
+    </div>
+  </div>
+
+  <!-- العضو 3 — أضف هنا -->
+  <div class="honor-card">
+    <div class="honor-rank">03</div>
+    <div class="honor-avatar-photo">
+      <img src="Leader 01.jpg" alt="Leader 01" />
+    </div>
+    <div class="honor-info">
+      <h3 class="honor-name">Leader 01</h3>
+      <p class="honor-role">Leader 01 </p>
+      <div class="honor-badge">⭐ عضو شرف</div>
+    </div>
+  </div>
+
+</div>
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-tag" data-ar="لنتواصل" data-en="Let's Connect">لنتواصل</div>
+    <h2 class="section-title" data-ar="تواصل معي" data-en="Get In Touch">تواصل معي</h2>
+    <p class="section-desc" data-ar="هل لديك مشروع أو فكرة؟ أنا هنا للتعاون والمساعدة في تحويل أفكارك إلى واقع" data-en="Have a project or idea? I'm here to collaborate and turn your vision into reality">هل لديك مشروع أو فكرة؟ أنا هنا للتعاون والمساعدة في تحويل أفكارك إلى واقع</p>
+  </div>
+  <div class="contact-wrapper fade-in">
+    <div class="contact-info">
+      <h3 data-ar="معلومات التواصل" data-en="Contact Information">معلومات التواصل</h3>
+      <p data-ar="يمكنك التواصل معي عبر أي من القنوات التالية وسأرد في أقرب وقت ممكن." data-en="Reach out through any of the following channels and I'll get back to you as soon as possible.">يمكنك التواصل معي عبر أي من القنوات التالية وسأرد في أقرب وقت ممكن.</p>
+      <div class="contact-items">
+        <a href="tel:07758857800" class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:2px;" data-ar="الهاتف / واتساب" data-en="Phone / WhatsApp">الهاتف / واتساب</div>
+            <div style="font-weight:600;">07758857800</div>
+          </div>
+        </a>
+        <a href="https://wa.me/9647758857800" class="contact-item" target="_blank">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:2px;">WhatsApp</div>
+            <div style="font-weight:600;" data-ar="راسلني على واتساب" data-en="Message on WhatsApp">راسلني على واتساب</div>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:2px;" data-ar="الموقع" data-en="Location">الموقع</div>
+            <div style="font-weight:600;" data-ar="العراق" data-en="Iraq">العراق</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:1.25rem;" data-ar="أرسل رسالة" data-en="Send a Message">أرسل رسالة</h3>
+      <div class="form-group">
+        <label data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+        <input type="text" placeholder="اسمك هنا..." />
+      </div>
+      <div class="form-group">
+        <label data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+        <input type="email" placeholder="example@email.com" />
+      </div>
+      <div class="form-group">
+        <label data-ar="الرسالة" data-en="Message">الرسالة</label>
+        <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;" data-ar="إرسال الرسالة ✉️" data-en="Send Message ✉️">إرسال الرسالة ✉️</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span data-ar="حسين عبد الستار مجيد" data-en="Hussein Abdul Sattar Majeed">حسين عبد الستار مجيد</span> — <span data-ar="مهندس تقنيات الذكاء الاصطناعي" data-en="AI Technologies Engineer">مهندس تقنيات الذكاء الاصطناعي</span></p>
+  <p style="margin-top:0.5rem;font-size:0.8rem;" data-ar="صُنع بـ ❤️ والذكاء الاصطناعي" data-en="Made with ❤️ and AI">صُنع بـ ❤️ والذكاء الاصطناعي</p>
+</footer>
+
+<script>
+  // Language toggle
+  let isArabic = true;
+
+  function toggleLang() {
+    isArabic = !isArabic;
+    const btn = document.querySelector('.lang-btn');
+    const html = document.querySelector('html');
+
+    if (isArabic) {
+      btn.textContent = 'EN';
+      html.setAttribute('lang', 'ar');
+      html.setAttribute('dir', 'rtl');
+    } else {
+      btn.textContent = 'عر';
+      html.setAttribute('lang', 'en');
+      html.setAttribute('dir', 'ltr');
+    }
+
+    document.querySelectorAll('[data-ar]').forEach(el => {
+      if (isArabic) {
+        el.textContent = el.getAttribute('data-ar');
+      } else {
+        el.textContent = el.getAttribute('data-en');
+      }
+    });
+
+    // Update placeholders
+    const inputs = document.querySelectorAll('input, textarea');
+    if (!isArabic) {
+      inputs[0] && (inputs[0].placeholder = 'Your name...');
+      inputs[1] && (inputs[1].placeholder = 'example@email.com');
+      inputs[2] && (inputs[2].placeholder = 'Write your message here...');
+    } else {
+      inputs[0] && (inputs[0].placeholder = 'اسمك هنا...');
+      inputs[1] && (inputs[1].placeholder = 'example@email.com');
+      inputs[2] && (inputs[2].placeholder = 'اكتب رسالتك هنا...');
+    }
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Make first hero visible immediately
+  setTimeout(() => {
+    document.querySelector('.hero .fade-in').classList.add('visible');
+  }, 100);
+</script>
+</body>
+</html>
